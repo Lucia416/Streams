@@ -5,6 +5,7 @@ var requestOptions = {
   path: '/http-examples/step4.html'
 };
 
+
 function getHTML (options, callback) {
 
   https.get(requestOptions,function(response) {
@@ -13,18 +14,23 @@ function getHTML (options, callback) {
 
     response.on('data', function(data){
       return buffer += data;
-      callback(buffer, '\n');
+
     });
 
     response.on('end', function() {
       console.log('Response stream complete.');
-      console.log(buffer.toString());
+      callback(buffer.toString());
     });
+
+  });
+}
+
+getHTML(requestOptions, function(result) {
+    console.log("THIS IS THE RESULT", result)
+});
+
 function printHTML (html) {
   console.log(html);
 }
-});
-}
 
-
-getHTML(requestOptions);
+getHTML(requestOptions, printHTML);
