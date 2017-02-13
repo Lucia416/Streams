@@ -11,6 +11,7 @@ function getAndPrintHTML (options) {
     host: 'sytantris.github.io',
     path: '/http-examples/step3.html'
   };
+  
   https.get(requestOptions,function(response) {
 
     response.setEncoding('utf8');
